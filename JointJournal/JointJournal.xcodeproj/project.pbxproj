@@ -6,17 +6,22 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		FD2414012CC818D200AC907B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2413FD2CC818D200AC907B /* HomeView.swift */; };
+		FD2414032CC818D200AC907B /* JointJournalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2413FF2CC818D200AC907B /* JointJournalApp.swift */; };
+		FD2414042CC818D200AC907B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD2413FA2CC818D200AC907B /* Preview Assets.xcassets */; };
+		FD2414052CC818D200AC907B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD2413FC2CC818D200AC907B /* Assets.xcassets */; };
+		FD2414092CC81AF700AC907B /* HomeDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2414082CC81AF700AC907B /* HomeDisplayView.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		FD2413E72CC8188F00AC907B /* JointJournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JointJournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD2413FA2CC818D200AC907B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FD2413FC2CC818D200AC907B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FD2413FD2CC818D200AC907B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		FD2413FF2CC818D200AC907B /* JointJournalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JointJournalApp.swift; sourceTree = "<group>"; };
+		FD2414082CC81AF700AC907B /* HomeDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDisplayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		FD2413E92CC8188F00AC907B /* JointJournal */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = JointJournal;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		FD2413E42CC8188F00AC907B /* Frameworks */ = {
@@ -32,7 +37,7 @@
 		FD2413DE2CC8188F00AC907B = {
 			isa = PBXGroup;
 			children = (
-				FD2413E92CC8188F00AC907B /* JointJournal */,
+				FD2414002CC818D200AC907B /* JointJournal */,
 				FD2413E82CC8188F00AC907B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,6 +48,50 @@
 				FD2413E72CC8188F00AC907B /* JointJournal.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		FD2413FB2CC818D200AC907B /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				FD2413FA2CC818D200AC907B /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FD2414002CC818D200AC907B /* JointJournal */ = {
+			isa = PBXGroup;
+			children = (
+				FD2414062CC8194900AC907B /* Background */,
+				FD2414072CC8195600AC907B /* Main */,
+				FD24140A2CC81AFF00AC907B /* Views */,
+				FD2413FB2CC818D200AC907B /* Preview Content */,
+				FD2413FC2CC818D200AC907B /* Assets.xcassets */,
+			);
+			path = JointJournal;
+			sourceTree = "<group>";
+		};
+		FD2414062CC8194900AC907B /* Background */ = {
+			isa = PBXGroup;
+			children = (
+				FD2413FF2CC818D200AC907B /* JointJournalApp.swift */,
+			);
+			path = Background;
+			sourceTree = "<group>";
+		};
+		FD2414072CC8195600AC907B /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				FD2413FD2CC818D200AC907B /* HomeView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		FD24140A2CC81AFF00AC907B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FD2414082CC81AF700AC907B /* HomeDisplayView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -59,9 +108,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				FD2413E92CC8188F00AC907B /* JointJournal */,
 			);
 			name = JointJournal;
 			packageProductDependencies = (
@@ -109,6 +155,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD2414042CC818D200AC907B /* Preview Assets.xcassets in Resources */,
+				FD2414052CC818D200AC907B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +167,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD2414012CC818D200AC907B /* HomeView.swift in Sources */,
+				FD2414092CC81AF700AC907B /* HomeDisplayView.swift in Sources */,
+				FD2414032CC818D200AC907B /* JointJournalApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
