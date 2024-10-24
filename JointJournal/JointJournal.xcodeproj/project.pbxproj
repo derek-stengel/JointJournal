@@ -12,6 +12,13 @@
 		FD2414042CC818D200AC907B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD2413FA2CC818D200AC907B /* Preview Assets.xcassets */; };
 		FD2414052CC818D200AC907B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD2413FC2CC818D200AC907B /* Assets.xcassets */; };
 		FD2414092CC81AF700AC907B /* HomeDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2414082CC81AF700AC907B /* HomeDisplayView.swift */; };
+		FD24140C2CC820AE00AC907B /* EntryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD24140B2CC820AE00AC907B /* EntryModel.swift */; };
+		FD2414102CC8660400AC907B /* NewEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD24140F2CC8660400AC907B /* NewEntryView.swift */; };
+		FD2414132CC94A0A00AC907B /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2414122CC94A0A00AC907B /* ImagePickerView.swift */; };
+		FD2414162CC94A4F00AC907B /* VideoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2414152CC94A4F00AC907B /* VideoPickerView.swift */; };
+		FD2414182CC94A6700AC907B /* AudioRecorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2414172CC94A6700AC907B /* AudioRecorderView.swift */; };
+		FD24141A2CC94A7900AC907B /* LocationPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2414192CC94A7900AC907B /* LocationPickerView.swift */; };
+		FD24141C2CCAADD500AC907B /* CalendarDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD24141B2CCAADD500AC907B /* CalendarDisplayView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +28,13 @@
 		FD2413FD2CC818D200AC907B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		FD2413FF2CC818D200AC907B /* JointJournalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JointJournalApp.swift; sourceTree = "<group>"; };
 		FD2414082CC81AF700AC907B /* HomeDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDisplayView.swift; sourceTree = "<group>"; };
+		FD24140B2CC820AE00AC907B /* EntryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryModel.swift; sourceTree = "<group>"; };
+		FD24140F2CC8660400AC907B /* NewEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEntryView.swift; sourceTree = "<group>"; };
+		FD2414122CC94A0A00AC907B /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
+		FD2414152CC94A4F00AC907B /* VideoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPickerView.swift; sourceTree = "<group>"; };
+		FD2414172CC94A6700AC907B /* AudioRecorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderView.swift; sourceTree = "<group>"; };
+		FD2414192CC94A7900AC907B /* LocationPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickerView.swift; sourceTree = "<group>"; };
+		FD24141B2CCAADD500AC907B /* CalendarDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDisplayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				FD2414062CC8194900AC907B /* Background */,
-				FD2414072CC8195600AC907B /* Main */,
+				FD24140D2CC820B300AC907B /* Models */,
 				FD24140A2CC81AFF00AC907B /* Views */,
 				FD2413FB2CC818D200AC907B /* Preview Content */,
 				FD2413FC2CC818D200AC907B /* Assets.xcassets */,
@@ -78,20 +92,59 @@
 			path = Background;
 			sourceTree = "<group>";
 		};
-		FD2414072CC8195600AC907B /* Main */ = {
+		FD24140A2CC81AFF00AC907B /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				FD2413FD2CC818D200AC907B /* HomeView.swift */,
+				FD24140E2CC8224000AC907B /* Home */,
+				FD2414112CC8669D00AC907B /* Entry */,
+				FD24141D2CCAADD900AC907B /* Calendar */,
 			);
-			path = Main;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		FD24140A2CC81AFF00AC907B /* Views */ = {
+		FD24140D2CC820B300AC907B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FD24140B2CC820AE00AC907B /* EntryModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FD24140E2CC8224000AC907B /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				FD2414082CC81AF700AC907B /* HomeDisplayView.swift */,
 			);
-			path = Views;
+			path = Home;
+			sourceTree = "<group>";
+		};
+		FD2414112CC8669D00AC907B /* Entry */ = {
+			isa = PBXGroup;
+			children = (
+				FD24140F2CC8660400AC907B /* NewEntryView.swift */,
+				FD2414142CC94A4000AC907B /* Toolbar Buttons */,
+			);
+			path = Entry;
+			sourceTree = "<group>";
+		};
+		FD2414142CC94A4000AC907B /* Toolbar Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				FD2414122CC94A0A00AC907B /* ImagePickerView.swift */,
+				FD2414152CC94A4F00AC907B /* VideoPickerView.swift */,
+				FD2414172CC94A6700AC907B /* AudioRecorderView.swift */,
+				FD2414192CC94A7900AC907B /* LocationPickerView.swift */,
+			);
+			path = "Toolbar Buttons";
+			sourceTree = "<group>";
+		};
+		FD24141D2CCAADD900AC907B /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				FD24141B2CCAADD500AC907B /* CalendarDisplayView.swift */,
+			);
+			path = Calendar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,9 +220,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD2414132CC94A0A00AC907B /* ImagePickerView.swift in Sources */,
+				FD24141A2CC94A7900AC907B /* LocationPickerView.swift in Sources */,
 				FD2414012CC818D200AC907B /* HomeView.swift in Sources */,
 				FD2414092CC81AF700AC907B /* HomeDisplayView.swift in Sources */,
+				FD2414162CC94A4F00AC907B /* VideoPickerView.swift in Sources */,
+				FD24141C2CCAADD500AC907B /* CalendarDisplayView.swift in Sources */,
+				FD24140C2CC820AE00AC907B /* EntryModel.swift in Sources */,
+				FD2414182CC94A6700AC907B /* AudioRecorderView.swift in Sources */,
 				FD2414032CC818D200AC907B /* JointJournalApp.swift in Sources */,
+				FD2414102CC8660400AC907B /* NewEntryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
