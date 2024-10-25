@@ -18,12 +18,25 @@ struct ImagePickerView: View {
     @State private var selectedItem: PhotosPickerItem? = nil
     
     var body: some View {
-        PhotosPicker(selection: $selectedItem, matching: .images) {
-            Text("Select an image")
-        }
-        .onChange(of: selectedItem) { newItem in
-            loadImage(from: newItem)
-        }
+        PhotosPicker(
+            selection: $selectedItem,
+            matching: .images,
+            photoLibrary: .shared()) {
+                VStack(spacing: 10) {
+                    Text("Select a photo")
+                        .padding()
+                        .background(Color(.blue))
+                        .foregroundColor(.white)
+                        .cornerRadius(18)
+                        .padding()
+                    Text("Note: After pressing the desired media, swipe this screen down, and if it is imported, a message will display while you type the rest of your journal entry. (It may take a moment)")
+                        .foregroundColor(.gray)
+                }
+                .padding()
+            }
+            .onChange(of: selectedItem) { newItem in
+                loadImage(from: newItem)
+            }
     }
     
     private func loadImage(from item: PhotosPickerItem?) {
@@ -31,9 +44,8 @@ struct ImagePickerView: View {
         item.loadTransferable(type: Data.self) { result in
             if case .success(let data) = result, let data = data, let uiImage = UIImage(data: data) {
                 selectedImage = Image(uiImage: uiImage)
-                isPresented = false // Dismiss the sheet
+                isPresented = false // Dismiss sheet
                 
-                // Set alert message and show the alert with a delay
                 imageAlertMessage = "Image successfully imported!"
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     showImageAlert = true

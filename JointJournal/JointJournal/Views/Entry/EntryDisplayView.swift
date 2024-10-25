@@ -67,7 +67,6 @@ struct EntryDisplayView: View {
                 Spacer()
             }
             .padding()
-//            .navigationTitle("Entry Details")
         }
     }
 }

@@ -109,7 +109,7 @@ struct NewEntryView: View {
                             ImagePickerView(selectedImage: $entryImage, isPresented: $showImagePicker, imageAlertMessage: $imageAlertMessage, showImageAlert: $showImageAlert)
                         }
                         .alert(isPresented: $showImageAlert) {
-                            Alert(title: Text("Image Alert"), message: Text(imageAlertMessage), dismissButton: .default(Text("OK")))
+                            Alert(title: Text(""), message: Text(imageAlertMessage), dismissButton: .default(Text("OK")))
                         }
                         
                         Spacer()
