@@ -15,15 +15,5 @@ struct Entry: Identifiable {
     var entryLocation: String?
     var entryImage: Image?
     var entryMedia: URL?
-    
-    // If entryTitle is empty, return formatted date as default
-//    var displayTitle: String {
-//        if entryTitle.isEmpty {
-//            let formatter = DateFormatter()
-//            formatter.dateStyle = .short
-//            return formatter.string(from: Date())  // Current date formatted as short style
-//        }
-//        return entryTitle
-//    }
 }
 

@@ -19,6 +19,7 @@
 		FD2414182CC94A6700AC907B /* AudioRecorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2414172CC94A6700AC907B /* AudioRecorderView.swift */; };
 		FD24141A2CC94A7900AC907B /* LocationPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2414192CC94A7900AC907B /* LocationPickerView.swift */; };
 		FD24141C2CCAADD500AC907B /* CalendarDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD24141B2CCAADD500AC907B /* CalendarDisplayView.swift */; };
+		FD24141F2CCAC3AA00AC907B /* EditEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD24141E2CCAC3AA00AC907B /* EditEntryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		FD2414172CC94A6700AC907B /* AudioRecorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderView.swift; sourceTree = "<group>"; };
 		FD2414192CC94A7900AC907B /* LocationPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickerView.swift; sourceTree = "<group>"; };
 		FD24141B2CCAADD500AC907B /* CalendarDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDisplayView.swift; sourceTree = "<group>"; };
+		FD24141E2CCAC3AA00AC907B /* EditEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEntryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				FD24140F2CC8660400AC907B /* NewEntryView.swift */,
+				FD24141E2CCAC3AA00AC907B /* EditEntryView.swift */,
 				FD2414142CC94A4000AC907B /* Toolbar Buttons */,
 			);
 			path = Entry;
@@ -230,6 +233,7 @@
 				FD2414182CC94A6700AC907B /* AudioRecorderView.swift in Sources */,
 				FD2414032CC818D200AC907B /* JointJournalApp.swift in Sources */,
 				FD2414102CC8660400AC907B /* NewEntryView.swift in Sources */,
+				FD24141F2CCAC3AA00AC907B /* EditEntryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
