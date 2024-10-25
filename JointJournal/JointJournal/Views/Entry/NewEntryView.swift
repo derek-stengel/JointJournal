@@ -1,6 +1,11 @@
+//
+//  NewEntryView.swift
+//  JointJournal
+//
+//  Created by Derek Stengel on 10/22/24.
+//
+
 import SwiftUI
-import PhotosUI
-import MapKit
 
 struct NewEntryView: View {
     @Environment(\.dismiss) var dismiss
@@ -17,6 +22,11 @@ struct NewEntryView: View {
     @State private var showVideoPicker: Bool = false
     @State private var showAudioPicker: Bool = false
     @State private var showLocationPicker: Bool = false
+    
+    @State private var showImageAlert: Bool = false
+    @State private var imageAlertMessage: String = ""
+    @State private var showVideoAlert: Bool = false
+    @State private var videoAlertMessage: String = ""
     
     var body: some View {
         NavigationView {
@@ -47,13 +57,14 @@ struct NewEntryView: View {
                 }
                 .padding(.bottom)
                 
-                .padding()
-                .foregroundColor(.black) // text color
+                Spacer()
+                
             }
-            .navigationBarTitle(Text(Date(), style: .date), displayMode: .inline)
-            .padding()
             
-            // Navigation Toolbar
+            .padding()
+            .navigationBarTitle(Text(Date(), style: .date), displayMode: .inline)
+            .navigationTitle(Text(Date(), style: .date))
+            
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: {
@@ -67,9 +78,10 @@ struct NewEntryView: View {
                         .foregroundColor(.blue)
                     }
                 }
+                
+                // header buttons
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Save") {
-                        // Create new entry and pass it back using the closure
                         let newEntry = Entry(
                             entryTitle: entryTitle,
                             entryText: entryText,
@@ -84,69 +96,83 @@ struct NewEntryView: View {
                 }
             }
             
-            // Keyboard Toolbar Icons
+            // keyboard buttons
             .toolbar {
                 ToolbarItemGroup(placement: .keyboard) {
                     HStack(spacing: 0) {
-                        Button(action: {
-                            showImagePicker = true
-                        }) {
+                        Button(action: { showImagePicker = true }) {
                             Image(systemName: "photo.fill")
                                 .frame(maxWidth: .infinity)
                                 .foregroundColor(.black)
                         }
+                        .sheet(isPresented: $showImagePicker) {
+                            ImagePickerView(selectedImage: $entryImage, isPresented: $showImagePicker, imageAlertMessage: $imageAlertMessage, showImageAlert: $showImageAlert)
+                        }
+                        .alert(isPresented: $showImageAlert) {
+                            Alert(title: Text("Image Alert"), message: Text(imageAlertMessage), dismissButton: .default(Text("OK")))
+                        }
+                        
                         Spacer()
-                        Button(action: {
-                            showVideoPicker = true
-                        }) {
+                        
+                        Button(action: { showVideoPicker = true }) {
                             Image(systemName: "video.fill")
                                 .frame(maxWidth: .infinity)
                                 .foregroundColor(.black)
                         }
+                        .sheet(isPresented: $showVideoPicker) {
+                            VideoPickerView(selectedVideoURL: $entryMedia, isPresented: $showVideoPicker, videoAlertMessage: $videoAlertMessage, showVideoAlert: $showVideoAlert)
+                        }
+                        .alert(isPresented: $showVideoAlert) {
+                            Alert(title: Text("Media Alert"), message: Text(videoAlertMessage), dismissButton: .default(Text("OK")))
+                        }
+                        
                         Spacer()
-                        Button(action: {
-                            showAudioPicker = true
-                        }) {
+                        
+                        Button(action: { showAudioPicker = true }) {
                             Image(systemName: "mic.fill")
                                 .frame(maxWidth: .infinity)
                                 .foregroundColor(.black)
                         }
+                        .sheet(isPresented: $showAudioPicker) {
+                            AudioRecorderView()
+                        }
+                        
                         Spacer()
-                        Button(action: {
-                            showLocationPicker = true
-                        }) {
+                        
+                        Button(action: { showLocationPicker = true }) {
                             Image(systemName: "location.fill")
                                 .frame(maxWidth: .infinity)
                                 .foregroundColor(.black)
                         }
+                        .sheet(isPresented: $showLocationPicker) {
+                            LocationPickerView()
+                        }
+                        
                     }
                     .frame(maxWidth: .infinity, maxHeight: 50)
                     .background(Color.clear)
                 }
             }
-            
-            .sheet(isPresented: $showImagePicker) {
-                // Image picker logic
-                ImagePickerView()
-            }
-            .sheet(isPresented: $showVideoPicker) {
-                // Video picker logic
-                VideoPickerView()
-            }
-            .sheet(isPresented: $showAudioPicker) {
-                // Audio picker logic
-                AudioRecorderView()
-            }
-            .sheet(isPresented: $showLocationPicker) {
-                // Location picker logic
-                LocationPickerView()
-            }
+//            .sheet(isPresented: $showImagePicker) {
+//                ImagePickerView(selectedImage: $entryImage, isPresented: $showImagePicker, imageAlertMessage: $imageAlertMessage, showImageAlert: $showImageAlert)
+//            }
+//            .sheet(isPresented: $showVideoPicker) {
+//                VideoPickerView(selectedVideoURL: $entryMedia, isPresented: $showVideoPicker, videoAlertMessage: $videoAlertMessage, showVideoAlert: $showVideoAlert)
+//            }
+//            .sheet(isPresented: $showAudioPicker) {
+//                AudioRecorderView()
+//            }
+//            .sheet(isPresented: $showLocationPicker) {
+//                LocationPickerView()
+//            }
+//            .alert(isPresented: $showImageAlert) {
+//                Alert(title: Text("Image Alert"), message: Text(imageAlertMessage), dismissButton: .default(Text("OK")))
+//            }
         }
         .navigationBarBackButtonHidden()
         .background(Color(.systemBackground))
     }
 }
-
 
 #Preview {
     NewEntryView(entries: .constant([Entry(entryTitle: "Cool title", entryText: "Blah blah blah")]))

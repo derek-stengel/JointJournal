@@ -19,7 +19,7 @@ struct HomeView: View {
     @State private var selectedTab: Int = 0
     @State private var entries: [Entry] = []
     @State private var showPlusButton = true
-
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -41,19 +41,19 @@ struct HomeView: View {
                 }
             }
             .navigationBarItems(trailing:
-                Group {
+                                    Group {
                 if selectedTab == 0 && showPlusButton {
-                        NavigationLink(destination: NewEntryView(entries: $entries)) {
-                            Image(systemName: "plus")
-                        }
+                    NavigationLink(destination: NewEntryView(entries: $entries)) {
+                        Image(systemName: "plus")
+                    }
                 } else if selectedTab == 1 {
-                        Button(action: {
-                            // Placeholder action
-                        }) {
-                            Image(systemName: "gear")
-                        }
+                    Button(action: {
+                        // Placeholder action
+                    }) {
+                        Image(systemName: "gear")
                     }
                 }
+            }
             )
         }
     }
