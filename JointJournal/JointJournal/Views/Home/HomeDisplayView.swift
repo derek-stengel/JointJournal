@@ -12,89 +12,109 @@ struct HomeDisplayView: View {
     @Binding var showPlusButton: Bool
     
     var body: some View {
-        VStack {
-            if entries.isEmpty {
-                Text("Create your first entry using the plus button")
-                    .foregroundColor(.gray)
-                    .multilineTextAlignment(.center)
-                    .padding()
-            } else {
-                // Group entries by date
-                let groupedEntries = Dictionary(grouping: entries) { entry in
-                    // Assuming 'entry.dateCreated' is of type Date
-                    Calendar.current.startOfDay(for: entry.dateCreated)
-                }
+        ZStack {
+            Color(.secondarySystemBackground)
+                .ignoresSafeArea()
+            VStack {
                 
-                List {
-                    ForEach(groupedEntries.keys.sorted(by: >), id: \.self) { date in
-                        Section(header: Text(date, style: .date).font(.headline)) {
-                            ForEach(groupedEntries[date]!, id: \.id) { entry in
-                                NavigationLink(destination: EntryDisplayView(entry: entry)
-                                    .onAppear {
-                                        showPlusButton = false
-                                    }
-                                    .onDisappear {
-                                        showPlusButton = true
-                                    }) {
-                                    HStack {
-                                        VStack(alignment: .leading, spacing: 6) {
-                                            Text(entry.entryTitle.isEmpty ? "No Title" : entry.entryTitle)
-                                                .font(.headline)
-                                            
-                                            if !entry.entryText.isEmpty {
-                                                Text(entry.entryText.prefix(30) + (entry.entryText.count > 30 ? "..." : ""))
-                                                    .font(.subheadline)
-                                                    .foregroundColor(.secondary)
-                                            }
-                                            
-                                            if let location = entry.entryLocation {
-                                                HStack(spacing: 7) { // Reduced spacing between icon and text
-                                                    Image(systemName: "location.fill")
-                                                        .resizable()
-                                                        .scaledToFit()
-                                                        .frame(width: 14, height: 14) // Adjust size of icon
-                                                        .foregroundColor(.blue) // Change color of icon if needed
-                                                    
-                                                    Text(location)
-                                                        .font(.footnote)
-                                                        .foregroundColor(.blue)
-                                                }
-                                                .padding(.vertical, 0) // Reduce vertical padding around the HStack
-                                            }
-                                            
-                                            if let mediaURL = entry.entryMedia {
-                                                Text("Video Attached")
-                                                    .font(.footnote)
-                                                    .foregroundColor(.green)
-                                            }
+//                Text("Entries")
+//                    .font(.largeTitle)
+//                    .bold()
+//                    .padding(.bottom, 10)
+                
+                
+                if entries.isEmpty {
+                    Text("Create your first entry using the plus button")
+                        .foregroundColor(.gray)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                } else {
+                    
+                    Text("Entries")
+                        .font(.largeTitle)
+                        .bold()
+                        .padding(.bottom, 10)
+                    // Group entries by date
+                    let groupedEntries = Dictionary(grouping: entries) { entry in
+                        // Assuming 'entry.dateCreated' is of type Date
+                        Calendar.current.startOfDay(for: entry.dateCreated)
+                    }
+                    
+                    List {
+                        ForEach(groupedEntries.keys.sorted(by: >), id: \.self) { date in
+                            Section(header: Text(date, style: .date).font(.headline)) {
+                                ForEach(groupedEntries[date]!, id: \.id) { entry in
+                                    NavigationLink(destination: EntryDisplayView(entry: entry)
+                                        .onAppear {
+                                            showPlusButton = false
                                         }
-                                        
-                                        Spacer().frame(width: 45)
-                                        
-                                        // Handle multiple images
-                                        if !entry.entryImages.isEmpty {
-                                            // Use a horizontal ScrollView for multiple images
-                                            ScrollView(.horizontal, showsIndicators: false) {
-                                                HStack(spacing: 8) {
-                                                    ForEach(entry.entryImages, id: \.self) { uiImage in
-                                                        Image(uiImage: uiImage) // Assuming entry.entryImages is of type [UIImage]
-                                                            .resizable()
-                                                            .scaledToFit()
-                                                            .frame(height: 80)
-                                                            .cornerRadius(8)
+                                        .onDisappear {
+                                            showPlusButton = true
+                                        }) {
+                                            HStack {
+                                                VStack(alignment: .leading, spacing: 6) {
+                                                    Text(entry.entryTitle.isEmpty ? "No Title" : entry.entryTitle)
+                                                        .font(.headline)
+                                                    
+                                                    if !entry.entryText.isEmpty {
+                                                        Text(entry.entryText.prefix(30) + (entry.entryText.count > 30 ? "..." : ""))
+                                                            .font(.subheadline)
+                                                            .foregroundColor(.secondary)
+                                                    }
+                                                    
+                                                    if let location = entry.entryLocation {
+                                                        HStack(spacing: 7) { // Reduced spacing between icon and text
+                                                            Image(systemName: "location.fill")
+                                                                .resizable()
+                                                                .scaledToFit()
+                                                                .frame(width: 14, height: 14) // Adjust size of icon
+                                                                .foregroundColor(.blue) // Change color of icon if needed
+                                                            
+                                                            Text(location)
+                                                                .font(.footnote)
+                                                                .foregroundColor(.blue)
+                                                        }
+                                                        .padding(.vertical, 0) // Reduce vertical padding around the HStack
+                                                    }
+                                                    
+                                                    if let mediaURL = entry.entryMedia {
+                                                        Text("Video Attached")
+                                                            .font(.footnote)
+                                                            .foregroundColor(.green)
                                                     }
                                                 }
+                                                
+                                                Spacer().frame(width: 45)
+                                                
+                                                // Handle multiple images
+                                                if !entry.entryImages.isEmpty {
+                                                    // Use a horizontal ScrollView for multiple images
+                                                    ScrollView(.horizontal, showsIndicators: false) {
+                                                        HStack(spacing: 8) {
+                                                            ForEach(entry.entryImages, id: \.self) { uiImage in
+                                                                Image(uiImage: uiImage) // Assuming entry.entryImages is of type [UIImage]
+                                                                    .resizable()
+                                                                    .scaledToFit()
+                                                                    .frame(height: 80)
+                                                                    .cornerRadius(8)
+                                                            }
+                                                        }
+                                                    }
+                                                    .frame(height: 80) // Set frame height to match the image height
+                                                }
                                             }
-                                            .frame(height: 80) // Set frame height to match the image height
+                                            .padding(.vertical, 5)
                                         }
-                                    }
-                                    .padding(.vertical, 5)
                                 }
                             }
                         }
                     }
+//                    .listStyle(PlainListStyle())
+                    .listStyle(SidebarListStyle())
+                    .background(Color(.secondarySystemBackground))
                 }
             }
+//            .padding()
         }
     }
 }
@@ -135,6 +155,26 @@ struct HomeDisplayView: View {
             ],
             entryMedia: URL(string: "https://example.com/video"),
             dateCreated: Calendar.current.date(byAdding: .day, value: -2, to: Date())! // Example date
+        ),
+        Entry(
+            entryTitle: "Dinner at the New Restaurant",
+            entryText: "The food was amazing!",
+            entryLocation: nil,
+            entryImages: [
+                UIImage(systemName: "photo")!
+            ],
+            entryMedia: nil,
+            dateCreated: Calendar.current.date(byAdding: .day, value: -3, to: Date())! // Example date
+        ),
+        Entry(
+            entryTitle: "Dinner at the New Restaurant",
+            entryText: "The food was amazing!",
+            entryLocation: nil,
+            entryImages: [
+                UIImage(systemName: "photo")!
+            ],
+            entryMedia: nil,
+            dateCreated: Calendar.current.date(byAdding: .day, value: -4, to: Date())! // Example date
         )
     ]), showPlusButton: .constant(true))
 }
@@ -145,7 +185,7 @@ struct HomeDisplayView: View {
 //struct HomeDisplayView: View {
 //    @Binding var entries: [Entry]
 //    @Binding var showPlusButton: Bool
-//    
+//
 //    var body: some View {
 //        VStack {
 //            if entries.isEmpty {
@@ -166,13 +206,13 @@ struct HomeDisplayView: View {
 //                            VStack(alignment: .leading, spacing: 6) {
 //                                Text(entry.entryTitle.isEmpty ? "No Title" : entry.entryTitle)
 //                                    .font(.headline)
-//                                
+//
 //                                if !entry.entryText.isEmpty {
 //                                    Text(entry.entryText.prefix(30) + (entry.entryText.count > 30 ? "..." : ""))
 //                                        .font(.subheadline)
 //                                        .foregroundColor(.secondary)
 //                                }
-//                                
+//
 //                                if let location = entry.entryLocation {
 //                                    HStack(spacing: 7) { // Reduced spacing between icon and text
 //                                        Image(systemName: "location.fill")
@@ -180,24 +220,24 @@ struct HomeDisplayView: View {
 //                                            .scaledToFit()
 //                                            .frame(width: 14, height: 14) // Adjust size of icon
 //                                            .foregroundColor(.blue) // Change color of icon if needed
-//                                        
+//
 //                                        Text(location)
 //                                            .font(.footnote)
 //                                            .foregroundColor(.blue)
 //                                    }
 //                                    .padding(.vertical, 0) // Reduce vertical padding around the HStack
 //                                }
-//                                
+//
 //                                if let mediaURL = entry.entryMedia {
 //                                    Text("Video Attached")
 //                                        .font(.footnote)
 //                                        .foregroundColor(.green)
 //                                }
 //                            }
-//                            
+//
 //                            Spacer().frame(width: 45)
-//                            
-//                            
+//
+//
 //                            // Handle multiple images
 //                            if !entry.entryImages.isEmpty {
 //                                // Use a horizontal ScrollView for multiple images
