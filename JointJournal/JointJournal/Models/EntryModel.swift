@@ -13,7 +13,19 @@ struct Entry: Identifiable {
     var entryTitle: String
     var entryText: String
     var entryLocation: String?
-    var entryImage: Image?
+    var entryImages: [UIImage] = [] // Changed to UIImage array
     var entryMedia: URL?
+    var dateCreated: Date
 }
 
+//import Foundation
+//import SwiftUI
+//
+//struct Entry: Identifiable {
+//    var id = UUID().uuidString
+//    var entryTitle: String
+//    var entryText: String
+//    var entryLocation: String?
+//    var entryImage: Image?
+//    var entryMedia: URL?
+//}
