@@ -10,24 +10,24 @@ import SwiftUI
 struct NewEntryView: View {
     @Environment(\.dismiss) var dismiss
     @State private var isEditorFocused: Bool = false
+    
     @Binding var entries: [Entry]
-
     @State private var entryTitle: String = ""
     @State private var entryText: String = ""
     @State private var entryLocation: String = ""
     @State private var entryImages: [UIImage] = []
     @State private var entryMedia: URL? = nil
-
+    
     @State private var showImagePicker: Bool = false
     @State private var showVideoPicker: Bool = false
     @State private var showAudioPicker: Bool = false
     @State private var showLocationPicker: Bool = false
-
+    
     @State private var showImageAlert: Bool = false
-    @State private var imageAlertMessage: String = ""
     @State private var showVideoAlert: Bool = false
+    @State private var imageAlertMessage: String = ""
     @State private var videoAlertMessage: String = ""
-
+    
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
@@ -39,7 +39,7 @@ struct NewEntryView: View {
                     .background(Color(.systemGray6))
                     .cornerRadius(8)
                     .padding(.bottom, 8)
-
+                
                 ZStack(alignment: .topLeading) {
                     TextEditor(text: $entryText)
                         .padding(4)
@@ -56,15 +56,14 @@ struct NewEntryView: View {
                         }
                 }
                 .padding(.bottom)
-
+                
                 Spacer()
-
             }
-
+            
             .padding()
             .navigationBarTitle(Text(Date(), style: .date), displayMode: .inline)
             .navigationTitle(Text(Date(), style: .date))
-
+            
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: {
@@ -78,7 +77,7 @@ struct NewEntryView: View {
                         .foregroundColor(.blue)
                     }
                 }
-
+                
                 // header buttons
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Save") {
@@ -96,7 +95,7 @@ struct NewEntryView: View {
                     .foregroundColor(.blue)
                 }
             }
-
+            
             // keyboard buttons
             .toolbar {
                 ToolbarItemGroup(placement: .keyboard) {
@@ -112,9 +111,9 @@ struct NewEntryView: View {
                         .alert(isPresented: $showImageAlert) {
                             Alert(title: Text(""), message: Text(imageAlertMessage), dismissButton: .default(Text("OK")))
                         }
-
+                        
                         Spacer()
-
+                        
                         Button(action: { showVideoPicker = true }) {
                             Image(systemName: "video.fill")
                                 .frame(maxWidth: .infinity)
@@ -126,9 +125,9 @@ struct NewEntryView: View {
                         .alert(isPresented: $showVideoAlert) {
                             Alert(title: Text("Media Alert"), message: Text(videoAlertMessage), dismissButton: .default(Text("OK")))
                         }
-
+                        
                         Spacer()
-
+                        
                         Button(action: { showAudioPicker = true }) {
                             Image(systemName: "mic.fill")
                                 .frame(maxWidth: .infinity)
@@ -137,38 +136,38 @@ struct NewEntryView: View {
                         .sheet(isPresented: $showAudioPicker) {
                             AudioRecorderView()
                         }
-
+                        
                         Spacer()
-
+                        
                         Button(action: { showLocationPicker = true }) {
                             Image(systemName: "location.fill")
                                 .frame(maxWidth: .infinity)
                                 .foregroundColor(.black)
                         }
                         .sheet(isPresented: $showLocationPicker) {
-                            LocationPickerView()
+                            LocationPickerView(entryLocation: $entryLocation)
                         }
-
+                        
                     }
                     .frame(maxWidth: .infinity, maxHeight: 50)
                     .background(Color.clear)
                 }
             }
-//            .sheet(isPresented: $showImagePicker) {
-//                ImagePickerView(selectedImage: $entryImage, isPresented: $showImagePicker, imageAlertMessage: $imageAlertMessage, showImageAlert: $showImageAlert)
-//            }
-//            .sheet(isPresented: $showVideoPicker) {
-//                VideoPickerView(selectedVideoURL: $entryMedia, isPresented: $showVideoPicker, videoAlertMessage: $videoAlertMessage, showVideoAlert: $showVideoAlert)
-//            }
-//            .sheet(isPresented: $showAudioPicker) {
-//                AudioRecorderView()
-//            }
-//            .sheet(isPresented: $showLocationPicker) {
-//                LocationPickerView()
-//            }
-//            .alert(isPresented: $showImageAlert) {
-//                Alert(title: Text("Image Alert"), message: Text(imageAlertMessage), dismissButton: .default(Text("OK")))
-//            }
+            //            .sheet(isPresented: $showImagePicker) {
+            //                ImagePickerView(selectedImage: $entryImage, isPresented: $showImagePicker, imageAlertMessage: $imageAlertMessage, showImageAlert: $showImageAlert)
+            //            }
+            //            .sheet(isPresented: $showVideoPicker) {
+            //                VideoPickerView(selectedVideoURL: $entryMedia, isPresented: $showVideoPicker, videoAlertMessage: $videoAlertMessage, showVideoAlert: $showVideoAlert)
+            //            }
+            //            .sheet(isPresented: $showAudioPicker) {
+            //                AudioRecorderView()
+            //            }
+            //            .sheet(isPresented: $showLocationPicker) {
+            //                LocationPickerView()
+            //            }
+            //            .alert(isPresented: $showImageAlert) {
+            //                Alert(title: Text("Image Alert"), message: Text(imageAlertMessage), dismissButton: .default(Text("OK")))
+            //            }
         }
         .navigationBarBackButtonHidden()
         .background(Color(.systemBackground))
@@ -187,23 +186,23 @@ struct NewEntryView: View {
 //    @Environment(\.dismiss) var dismiss
 //    @State private var isEditorFocused: Bool = false
 //    @Binding var entries: [Entry]
-//    
+//
 //    @State private var entryTitle: String = ""
 //    @State private var entryText: String = ""
 //    @State private var entryLocation: String = ""
 //    @State private var entryImage: Image? = nil
 //    @State private var entryMedia: URL? = nil
-//    
+//
 //    @State private var showImagePicker: Bool = false
 //    @State private var showVideoPicker: Bool = false
 //    @State private var showAudioPicker: Bool = false
 //    @State private var showLocationPicker: Bool = false
-//    
+//
 //    @State private var showImageAlert: Bool = false
 //    @State private var imageAlertMessage: String = ""
 //    @State private var showVideoAlert: Bool = false
 //    @State private var videoAlertMessage: String = ""
-//    
+//
 //    var body: some View {
 //        NavigationView {
 //            VStack(alignment: .leading) {
@@ -215,7 +214,7 @@ struct NewEntryView: View {
 //                    .background(Color(.systemGray6))
 //                    .cornerRadius(8)
 //                    .padding(.bottom, 8)
-//                
+//
 //                ZStack(alignment: .topLeading) {
 //                    TextEditor(text: $entryText)
 //                        .padding(4)
@@ -232,15 +231,15 @@ struct NewEntryView: View {
 //                        }
 //                }
 //                .padding(.bottom)
-//                
+//
 //                Spacer()
-//                
+//
 //            }
-//            
+//
 //            .padding()
 //            .navigationBarTitle(Text(Date(), style: .date), displayMode: .inline)
 //            .navigationTitle(Text(Date(), style: .date))
-//            
+//
 //            .toolbar {
 //                ToolbarItem(placement: .navigationBarLeading) {
 //                    Button(action: {
@@ -254,7 +253,7 @@ struct NewEntryView: View {
 //                        .foregroundColor(.blue)
 //                    }
 //                }
-//                
+//
 //                // header buttons
 //                ToolbarItem(placement: .navigationBarTrailing) {
 //                    Button("Save") {
@@ -271,7 +270,7 @@ struct NewEntryView: View {
 //                    .foregroundColor(.blue)
 //                }
 //            }
-//            
+//
 //            // keyboard buttons
 //            .toolbar {
 //                ToolbarItemGroup(placement: .keyboard) {
@@ -287,9 +286,9 @@ struct NewEntryView: View {
 //                        .alert(isPresented: $showImageAlert) {
 //                            Alert(title: Text(""), message: Text(imageAlertMessage), dismissButton: .default(Text("OK")))
 //                        }
-//                        
+//
 //                        Spacer()
-//                        
+//
 //                        Button(action: { showVideoPicker = true }) {
 //                            Image(systemName: "video.fill")
 //                                .frame(maxWidth: .infinity)
@@ -301,9 +300,9 @@ struct NewEntryView: View {
 //                        .alert(isPresented: $showVideoAlert) {
 //                            Alert(title: Text("Media Alert"), message: Text(videoAlertMessage), dismissButton: .default(Text("OK")))
 //                        }
-//                        
+//
 //                        Spacer()
-//                        
+//
 //                        Button(action: { showAudioPicker = true }) {
 //                            Image(systemName: "mic.fill")
 //                                .frame(maxWidth: .infinity)
@@ -312,9 +311,9 @@ struct NewEntryView: View {
 //                        .sheet(isPresented: $showAudioPicker) {
 //                            AudioRecorderView()
 //                        }
-//                        
+//
 //                        Spacer()
-//                        
+//
 //                        Button(action: { showLocationPicker = true }) {
 //                            Image(systemName: "location.fill")
 //                                .frame(maxWidth: .infinity)
@@ -323,7 +322,7 @@ struct NewEntryView: View {
 //                        .sheet(isPresented: $showLocationPicker) {
 //                            LocationPickerView()
 //                        }
-//                        
+//
 //                    }
 //                    .frame(maxWidth: .infinity, maxHeight: 50)
 //                    .background(Color.clear)

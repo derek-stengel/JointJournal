@@ -16,27 +16,19 @@ struct HomeDisplayView: View {
             Color(.secondarySystemBackground)
                 .ignoresSafeArea()
             VStack {
-                
-//                Text("Entries")
-//                    .font(.largeTitle)
-//                    .bold()
-//                    .padding(.bottom, 10)
-                
-                
                 if entries.isEmpty {
                     Text("Create your first entry using the plus button")
                         .foregroundColor(.gray)
                         .multilineTextAlignment(.center)
                         .padding()
                 } else {
-                    
                     Text("Entries")
-                        .font(.largeTitle)
+                        .font(.title2)
                         .bold()
                         .padding(.bottom, 10)
+                    
                     // Group entries by date
                     let groupedEntries = Dictionary(grouping: entries) { entry in
-                        // Assuming 'entry.dateCreated' is of type Date
                         Calendar.current.startOfDay(for: entry.dateCreated)
                     }
                     
@@ -109,12 +101,12 @@ struct HomeDisplayView: View {
                             }
                         }
                     }
-//                    .listStyle(PlainListStyle())
+                    //                    .listStyle(PlainListStyle())
                     .listStyle(SidebarListStyle())
                     .background(Color(.secondarySystemBackground))
                 }
             }
-//            .padding()
+            //            .padding()
         }
     }
 }

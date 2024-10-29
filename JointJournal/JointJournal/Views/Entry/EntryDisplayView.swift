@@ -13,7 +13,7 @@ struct EntryDisplayView: View {
     
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 20) {
+            VStack(alignment: .center, spacing: 20) {
                 Text(entry.entryTitle)
                     .font(.largeTitle)
                     .fontWeight(.bold)
@@ -23,30 +23,23 @@ struct EntryDisplayView: View {
                     .font(.body)
                     .padding(.bottom, 10)
                 
-                if let location = entry.entryLocation {
-                    HStack {
-                        Image(systemName: "location.fill")
-                            .foregroundColor(.blue)
-                        Text(location)
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                    }
-                    .padding(.bottom, 10)
-                }
-                
-                // Display multiple images
+                // Display multiple images, centered
                 if !entry.entryImages.isEmpty {
-                    ScrollView(.horizontal) {
-                        HStack {
-                            ForEach(entry.entryImages, id: \.self) { uiImage in
-                                Image(uiImage: uiImage) // Convert UIImage to Image 
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 200, height: 200)
-                                    .cornerRadius(10)
-                                    .padding(.trailing, 8)
+                    HStack {
+                        Spacer() // Center images within the VStack
+                        ScrollView(.horizontal) {
+                            HStack {
+                                ForEach(entry.entryImages, id: \.self) { uiImage in
+                                    Image(uiImage: uiImage)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 200, height: 200)
+                                        .cornerRadius(10)
+                                        .padding(.trailing, 8)
+                                }
                             }
                         }
+                        Spacer()
                     }
                     .padding(.bottom, 10)
                 }
@@ -63,12 +56,55 @@ struct EntryDisplayView: View {
                     }
                 }
                 
+                if let location = entry.entryLocation {
+                    HStack {
+                        Image(systemName: "location.fill")
+                            .foregroundColor(.blue)
+                        Text(location)
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                    }
+                    .padding(.bottom, 10)
+                }
+                
                 Spacer()
             }
             .padding()
         }
+        .overlay(
+            VStack {
+                Spacer()
+                Button(action: {
+                    // function here
+                }) {
+                    Text("Edit Entry")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(8)
+                }
+                .padding(.horizontal)
+                .padding(.bottom)
+            }
+        )
     }
 }
+
+#Preview {
+    EntryDisplayView(
+        entry: Entry(
+            entryTitle: "Cool Event",
+            entryText: "This is basic filler text for the entry.",
+            entryLocation: "South Jordan, UT",
+            entryImages: [UIImage(systemName: "circle")!], // Sample image
+            entryMedia: URL(string: "https://www.example.com"), // Placeholder URL
+            dateCreated: Date()
+        )
+    )
+}
+
 
 
 //import SwiftUI
