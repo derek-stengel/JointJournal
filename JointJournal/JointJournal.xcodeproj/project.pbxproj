@@ -20,6 +20,7 @@
 		FD24141A2CC94A7900AC907B /* LocationPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2414192CC94A7900AC907B /* LocationPickerView.swift */; };
 		FD24141C2CCAADD500AC907B /* CalendarDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD24141B2CCAADD500AC907B /* CalendarDisplayView.swift */; };
 		FD24141F2CCAC3AA00AC907B /* EntryDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD24141E2CCAC3AA00AC907B /* EntryDisplayView.swift */; };
+		FD8347CA2CD14C79005917DC /* EditEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8347C92CD14C79005917DC /* EditEntryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		FD2414192CC94A7900AC907B /* LocationPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickerView.swift; sourceTree = "<group>"; };
 		FD24141B2CCAADD500AC907B /* CalendarDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDisplayView.swift; sourceTree = "<group>"; };
 		FD24141E2CCAC3AA00AC907B /* EntryDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDisplayView.swift; sourceTree = "<group>"; };
+		FD8347C92CD14C79005917DC /* EditEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEntryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 			children = (
 				FD24140F2CC8660400AC907B /* NewEntryView.swift */,
 				FD24141E2CCAC3AA00AC907B /* EntryDisplayView.swift */,
+				FD8347C92CD14C79005917DC /* EditEntryView.swift */,
 				FD2414142CC94A4000AC907B /* Toolbar Buttons */,
 			);
 			path = Entry;
@@ -228,6 +231,7 @@
 				FD2414012CC818D200AC907B /* HomeView.swift in Sources */,
 				FD2414092CC81AF700AC907B /* HomeDisplayView.swift in Sources */,
 				FD2414162CC94A4F00AC907B /* VideoPickerView.swift in Sources */,
+				FD8347CA2CD14C79005917DC /* EditEntryView.swift in Sources */,
 				FD24141C2CCAADD500AC907B /* CalendarDisplayView.swift in Sources */,
 				FD24140C2CC820AE00AC907B /* EntryModel.swift in Sources */,
 				FD2414182CC94A6700AC907B /* AudioRecorderView.swift in Sources */,

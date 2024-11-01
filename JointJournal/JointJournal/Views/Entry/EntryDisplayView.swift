@@ -74,9 +74,7 @@ struct EntryDisplayView: View {
         .overlay(
             VStack {
                 Spacer()
-                Button(action: {
-                    // function here
-                }) {
+                NavigationLink(destination: EditEntryView()) {
                     Text("Edit Entry")
                         .font(.headline)
                         .foregroundColor(.white)
@@ -104,7 +102,6 @@ struct EntryDisplayView: View {
         )
     )
 }
-
 
 
 //import SwiftUI
