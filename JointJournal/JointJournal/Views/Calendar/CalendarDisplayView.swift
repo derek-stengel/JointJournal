@@ -8,27 +8,24 @@
 import SwiftUI
 
 struct CalendarDisplayView: View {
-    // Dictionary to hold colors for each day tied to month and year (e.g., 20241101 for November 1, 2024)
     @State private var dayColors: [String: Color] = [:]
-    
-    // Current displayed date
     @State private var currentDate = Date()
     
-    // Function to get the current month and year as a string
+    // State to control the color key pop-up visibility
+    @State private var showColorKey = false
+    
     private func getMonthAndYear() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM yyyy"
         return dateFormatter.string(from: currentDate)
     }
     
-    // Function to get the days in the current month
     private func getDaysInMonth() -> [Int] {
         let calendar = Calendar.current
         let range = calendar.range(of: .day, in: .month, for: currentDate)!
         return Array(range)
     }
     
-    // Function to generate a unique key for each day based on month and year
     private func getKey(for day: Int) -> String {
         let calendar = Calendar.current
         let components = calendar.dateComponents([.year, .month], from: currentDate)
@@ -36,7 +33,6 @@ struct CalendarDisplayView: View {
         return "\(year)\(String(format: "%02d", month))\(String(format: "%02d", day))"
     }
     
-    // Function to change the color of the selected day
     private func changeColor(for day: Int) {
         let colors: [Color] = [.red, .yellow, .green, .blue, .purple, .orange, .clear]
         let key = getKey(for: day)
@@ -49,7 +45,6 @@ struct CalendarDisplayView: View {
         }
     }
     
-    // Go to the previous month
     private func goToPreviousMonth() {
         let calendar = Calendar.current
         if let previousMonth = calendar.date(byAdding: .month, value: -1, to: currentDate) {
@@ -57,11 +52,9 @@ struct CalendarDisplayView: View {
         }
     }
     
-    // Go to the next month (but limit to today’s month or earlier)
     private func goToNextMonth() {
         let calendar = Calendar.current
         let today = Date()
-        
         if let nextMonth = calendar.date(byAdding: .month, value: 1, to: currentDate),
            nextMonth <= today {
             currentDate = nextMonth
@@ -71,7 +64,6 @@ struct CalendarDisplayView: View {
     var body: some View {
         VStack {
             HStack {
-                // Back Arrow to navigate to the previous month
                 Button(action: goToPreviousMonth) {
                     Image(systemName: "chevron.left")
                         .font(.title)
@@ -80,14 +72,12 @@ struct CalendarDisplayView: View {
                 
                 Spacer()
                 
-                // Month and Year Display
                 Text(getMonthAndYear())
                     .font(.title)
                     .padding()
                 
                 Spacer()
                 
-                // Forward Arrow to navigate to the next month (restricted to today's month or earlier)
                 Button(action: goToNextMonth) {
                     Image(systemName: "chevron.right")
                         .font(.title)
@@ -96,9 +86,7 @@ struct CalendarDisplayView: View {
                 .disabled(Calendar.current.isDate(currentDate, equalTo: Date(), toGranularity: .month))
             }
             
-            // Calendar Grid with black border around the entire calendar
             ZStack {
-                // Black border around the calendar
                 RoundedRectangle(cornerRadius: 12)
                     .stroke(Color.black, lineWidth: 2)
                     .frame(width: 370, height: 300)
@@ -116,11 +104,33 @@ struct CalendarDisplayView: View {
                             }
                     }
                 }
-                .padding(10) // numbers spacing
+                .padding(10)
             }
-            .padding() // border from the edge spacing
+            .padding()
             
-            // Color Key at the Bottom in Centered Grid
+            Button(action: {
+                showColorKey.toggle() // Show the color key pop-up
+            }) {
+                Text("View Color Key")
+                    .font(.headline)
+                    .padding()
+                    .background(Color.black.opacity(0.1))
+                    .cornerRadius(8)
+            }
+            .padding(.top)
+        }
+        .sheet(isPresented: $showColorKey) {
+            ColorKeyPopupView()
+                .presentationDetents([.height(200)]) // Restrict sheet height to 200 points
+        }
+    }
+}
+
+struct ColorKeyPopupView: View {
+    @Environment(\.dismiss) var dismiss
+    var body: some View {
+        VStack {
+            
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
                 ColorKeyView(color: .red, label: "Angry")
                 ColorKeyView(color: .blue, label: "Sad / Depressed")
@@ -128,13 +138,21 @@ struct CalendarDisplayView: View {
                 ColorKeyView(color: .purple, label: "Relaxed")
                 ColorKeyView(color: .green, label: "Happy")
                 ColorKeyView(color: .orange, label: "Excited")
-                
-                // create the ability to let the user edit the list of colors, and create their own.
             }
-            .padding(.top)
             .padding()
             
+            Button(action: {
+                dismiss()
+            }) {
+                Text("Close")
+                    .font(.headline)
+                    .padding()
+                    .background(Color.black.opacity(0.1))
+                    .cornerRadius(8)
+            }
+            .padding()
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
